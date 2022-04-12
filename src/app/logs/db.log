@@ -1,5 +1,11 @@
-[2022-04-05T07:00:23+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
-[2022-04-05T07:00:23+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
-[2022-04-06T06:26:27+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'client' AND `TABLE_SCHEMA` = DATABASE()
-[2022-04-06T06:26:28+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'client' AND `TABLE_SCHEMA` = DATABASE()
-[2022-04-06T06:26:28+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'client' AND `TABLE_SCHEMA` = DATABASE()
+[2022-04-12T12:03:09+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'signup' AND `TABLE_SCHEMA` = DATABASE()
+[2022-04-12T12:03:09+00:00][info] DESCRIBE `signup`
+[2022-04-12T12:03:17+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'signup' AND `TABLE_SCHEMA` = DATABASE()
+[2022-04-12T12:03:17+00:00][info] DESCRIBE `signup`
+[2022-04-12T12:03:59+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'signup' AND `TABLE_SCHEMA` = DATABASE()
+[2022-04-12T12:03:59+00:00][info] DESCRIBE `signup`
+[2022-04-12T12:03:59+00:00][info] SELECT `signup`.`userid`, `signup`.`username`, `signup`.`email`, `signup`.`password`, `signup`.`accesstoken`, `signup`.`refreshtoken` FROM `signup`
+[2022-04-12T12:04:02+00:00][info] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'signup' AND `TABLE_SCHEMA` = DATABASE()
+[2022-04-12T12:04:02+00:00][info] DESCRIBE `signup`
+[2022-04-12T12:04:02+00:00][info] SELECT `signup`.`userid`, `signup`.`username`, `signup`.`email`, `signup`.`password`, `signup`.`accesstoken`, `signup`.`refreshtoken` FROM `signup` WHERE `signup`.`userid` LIMIT :APL0
+[2022-04-12T12:04:02+00:00][info] UPDATE `signup` SET `username` = ?, `email` = ?, `password` = ?, `accesstoken` = ?, `refreshtoken` = ? WHERE `userid` = ?

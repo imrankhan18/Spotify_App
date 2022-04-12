@@ -1,5 +1,7 @@
 <?php
 // require('../../vendor/autoload.php');
+
+// use Listener\NotificationListener;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -16,6 +18,7 @@ use Phalcon\Logger;
 use Phalcon\Events\Manager;
 use Phalcon\Logger\Adapter\Stream;
 use Phalcon\Session\Manager as ss;
+use Phalcon\Events\Manager as EventsManager;
 
 
 $config = new Config([]);
@@ -31,12 +34,21 @@ $loader->registerDirs(
     [
         APP_PATH . "/controllers/",
         APP_PATH . "/models/",
+        APP_PATH . "/listener/",
+
     ]
 );
+// $loader->registerNamespaces(
+//     [
+
+//         'App\Listener' => APP_PATH . "/listener",
+//     ]
+// );
 $loader->registerFiles([APP_PATH . '/vendor/autoload.php']);
 $loader->register();
 
 $container = new FactoryDefault();
+
 
 $container->set(
     'view',
@@ -59,8 +71,7 @@ $container->set(
 
 $container->set(
     "session",
-    function()
-    {
+    function () {
         $session = new ss();
         $files = new sm(
             [
@@ -71,62 +82,70 @@ $container->set(
         $session->start();
 
         return $session;
-
-
     }
 );
 
 $container->set(
     "cookies",
-    function()
-    {
-        
-        $cookies=new Cookies();
+    function () {
+
+        $cookies = new Cookies();
         $cookies->useEncryption(false);
         return $cookies;
     }
 );
 // 
-// $container = new FactoryDefault();
-// $container->set(
-//     'db',
-//     function() {
-//         $eventsManager = new Manager();
-//         $adapter = new Stream('../app/logs/db.log');
-//         $logger  = new Logger(
-//             'messages',
-//             [
-//                 'main' => $adapter,
-//             ]
-//         );
-
-//         $eventsManager-> attach(
-//             'db:afterQuery',
-//             function ($event, $connection) use ($logger) {
-//                 $logger->info(
-//                     $connection->getSQLStatement()
-//                 );
-//             }
-//         );
-
-//         $connection = new Mysql(
-//             [
-//                 'host'     => 'mysql-server',
-//                 'username' => 'root',
-//                 'password' => 'secret',
-//                 'dbname'   => 'api',
-//             ]
-//         );
-
-//         $connection->setEventsManager($eventsManager);
-
-//         return $connection;
-//     }
-// );
-
-// 
 
 $application = new Application($container);
+$container->set(
+    'db',
+    function () {
+        $eventsManager = new Manager();
+        $adapter = new Stream('../app/logs.db.log');
+        $logger  = new Logger(
+            'messages',
+            [
+                'main' => $adapter,
+            ]
+        );
+
+        $eventsManager->attach(
+            'db:afterQuery',
+            function ($event, $connection) use ($logger) {
+                $logger->info(
+                    $connection->getSQLStatement()
+                );
+            }
+        );
+
+        $connection = new Mysql(
+            [
+                'host'     => 'mysql-server',
+                'username' => 'root',
+                'password' => 'secret',
+                'dbname'   => 'api',
+            ]
+        );
+
+        $connection->setEventsManager($eventsManager);
+
+        return $connection;
+    }
+);
+$eventsManager = new EventsManager();
+$container->set(
+    'eventsManager',
+    function () use ($eventsManager) {
+        $eventsManager->attach(
+            'spotify',
+            new NotificationListener()
+        );
+        return $eventsManager;
+    }
+);
+// 
+
+
 
 
 
@@ -152,14 +171,13 @@ $container = new Di();
 
 $container->set(
     'escaper',
-    function ()
-    {
+    function () {
         return new Escaper();
     }
 );
 
 $loader = new Loader();
-$loader-> registerDirs(
+$loader->registerDirs(
     [
         APP_PATH . "/controller/",
         APP_PATH . "/models/"
@@ -174,20 +192,20 @@ $loader->register();
 
 $container = new Di();
 
-// $container->set(
-//     'logger',
-//     function () {
-//         $adapter = new Stream('/app/components/main.log');
-//         $logger  = new Logger(
-//             'messages',
-//             [
-//                 'main' => $adapter,
-//             ]
-//         );
+$container->set(
+    'logger',
+    function () {
+        $adapter = new Stream('/app/components/main.log');
+        $logger  = new Logger(
+            'messages',
+            [
+                'main' => $adapter,
+            ]
+        );
 
-//         return $logger;
-//     }
-// );
+        return $logger;
+    }
+);
 
 
 // $container->set(

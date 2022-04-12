@@ -1,21 +1,25 @@
-
 <?php
-
 ?>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div>
-    <h1 style="text-align:center">Spotify App</h1>
+<div class="" style="text-align:right; margin-right:20px; margin-top:20px"><a href="/signup/userdashboard/" class="btn btn-dark text-white">Dashboard</a></div>
+   
+<h1 style="text-align:center"><i style="font-size:40px" class="fa">&#xf1bc;</i>Spotify App</h1>
     <form action='/api/addPlaylist/' method='post'>
        <label for="playlist"> Add New Playlist</label>
        <input type="text" name='playlist'>
        <button class="btn btn-lg btn-primary" type="submit">Create Playlist</button>
        </form>
+
        <a href="/api/displayplaylist" class="btn btn-dark text-white">Show Playlist</a>
+       
     </div>
    
 <h2 style="text-align:center">Search Whatever You Want...</h2>
@@ -40,22 +44,22 @@
                 </div>
                 <div>
                     <p>
-                      <label> <input type="checkbox" name="box[]" value="album">Album</label>
+                      <label> <input type="checkbox" name="box[]" value="album"> Album</label>
                     </p>
                     <p>
-                    <label> <input type="checkbox" name="box[]" value="artist">Artist</label>
+                    <label> <input type="checkbox" name="box[]" value="artist"> Artist</label>
                     <p>
-                    <label> <input type="checkbox" name="box[]" value="playlist">Playlist</label>
+                    <label> <input type="checkbox" name="box[]" value="playlist"> Playlist</label>
                     </p>
 
                     <p>
-                    <label> <input type="checkbox" name="box[]" value="track">Track</label>
+                    <label> <input type="checkbox" name="box[]" value="track"> Track</label>
                     </p>
                     <p>
-                    <label> <input type="checkbox" name="box[]" value="show">Show</label>
+                    <label> <input type="checkbox" name="box[]" value="show"> Show</label>
                     </p>
                     <p>
-                    <label> <input type="checkbox" name="box[]" value="episode">Episode</label>
+                    <label> <input type="checkbox" name="box[]" value="episode"> Episode</label>
                     </p>
                     </div>
                 <div class="col-auto">
