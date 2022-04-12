@@ -1,0 +1,77 @@
+
+<?php
+
+?>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div>
+    <h1 style="text-align:center">Spotify App</h1>
+    <form action='/api/addPlaylist/' method='post'>
+       <label for="playlist"> Add New Playlist</label>
+       <input type="text" name='playlist'>
+       <button class="btn btn-lg btn-primary" type="submit">Create Playlist</button>
+       </form>
+       <a href="/api/displayplaylist" class="btn btn-dark text-white">Show Playlist</a>
+    </div>
+   
+<h2 style="text-align:center">Search Whatever You Want...</h2>
+
+<div class="container">
+    <br />
+    <div class="row justify-content-center">
+        <?php echo $this->tag->form("api/search"); ?>
+        <div class="col-12 col-md-10 col-lg-8">
+            <form class="card card-sm">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+
+                    <div class="col">
+                        <input name="tosearch" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search Songs">
+                    </div>
+                    
+                   
+
+                </div>
+                <div>
+                    <p>
+                      <label> <input type="checkbox" name="box[]" value="album">Album</label>
+                    </p>
+                    <p>
+                    <label> <input type="checkbox" name="box[]" value="artist">Artist</label>
+                    <p>
+                    <label> <input type="checkbox" name="box[]" value="playlist">Playlist</label>
+                    </p>
+
+                    <p>
+                    <label> <input type="checkbox" name="box[]" value="track">Track</label>
+                    </p>
+                    <p>
+                    <label> <input type="checkbox" name="box[]" value="show">Show</label>
+                    </p>
+                    <p>
+                    <label> <input type="checkbox" name="box[]" value="episode">Episode</label>
+                    </p>
+                    </div>
+                <div class="col-auto">
+                        <button class="btn btn-lg btn-success" type="submit" name="search" value="search">Search in Spotify</button>
+                    </div>
+            </form>
+        </div>
+
+        </from>
+    </div>
+    
+   
+</div>
+
+
+<?php 
+if (isset($show))
+echo $show;
+?>

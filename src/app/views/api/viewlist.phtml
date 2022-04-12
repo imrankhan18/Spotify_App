@@ -1,0 +1,31 @@
+<?php
+// echo "<pre>";
+// print_r($response['tracks']['items']);
+// die;
+$id=$_GET['id'];
+// echo $id;
+// die;
+$disp="<h1 style='text-align:center'>Song Details</h1>";
+$disp.="<table class='styled-table'>
+<thead><tr>
+
+<th>Title</th>
+<th>Release Date</th>
+<th>Total Tracks</th>
+<th>Type</th>
+<th>Action</th>
+</tr></thead>";
+foreach ($response['tracks']['items'] as $key => $v) {
+    $disp.="<form action='/api/delete/' method='post'><tbody><tr class='active-row'>
+    
+    <td>".$v['track']['album']['name']."</td>
+    <td>".$v['track']['album']['release_date']."</td>
+    <td>".$v['track']['album']['total_tracks']."</td>
+    <td>".$v['track']['album']['type']."</td>
+    <td><a href='/api/delete?uid=".$v['track']['uri']."&id=".$_GET['id']."' class='btn btn-danger'>Delete</a></td>
+    </tr></tbody></form>";
+}
+$disp.="</table>";
+echo $disp;
+
+?>
